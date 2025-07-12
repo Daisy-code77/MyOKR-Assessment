@@ -1,0 +1,99 @@
+body {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+    background: linear-gradient(to right, #00c6ff, #0072ff);
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .login-container {
+    background: white;
+    padding: 40px;
+    border-radius: 12px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+    text-align: center;
+    width: 300px;
+  }
+  
+  .login-container h1 {
+    margin-bottom: 20px;
+  }
+  
+  .login-container input {
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+  }
+  
+  .login-container button {
+    width: 100%;
+    padding: 10px;
+    background-color: #0072ff;
+    border: none;
+    color: white;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: bold;
+  }
+  
+  .login-container button:hover {
+    background-color: #005bcc;
+  }
+  
+  #errorMsg {
+    color: red;
+    margin-top: 10px;
+  }
+  .dashboard-container {
+    max-width: 600px;
+    margin: 40px auto;
+    padding: 20px;
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+  }
+  
+  .dashboard-container h2 {
+    text-align: center;
+    color: #333;
+  }
+  
+  form input {
+    margin-bottom: 10px;
+  }
+  
+  .okr-list {
+    margin-top: 30px;
+  }
+  
+  .okr-card {
+    background: #f3f3f3;
+    padding: 15px;
+    margin-bottom: 15px;
+    border-radius: 10px;
+  }
+  
+  .progress-bar {
+    height: 10px;
+    background: #0072ff;
+    border-radius: 5px;
+    margin-top: 8px;
+  }
+  
+  .logout-btn {
+    float: right;
+    margin-top: -50px;
+    padding: 6px 10px;
+    background-color: #ff4d4d;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  
