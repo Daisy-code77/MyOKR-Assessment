@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Dashboard - MyOKR</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      padding: 20px;
+      background-color: #f0f2f5;
+    }
+    h1 {
+      color: #333;
+    }
+    #welcomeMsg {
+      margin-bottom: 20px;
+    }
+    #okrForm input, #okrForm textarea {
+      width: 100%;
+      padding: 10px;
+      margin: 8px 0;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+    #okrForm button {
+      background-color: #007bff;
+      color: white;
+      padding: 10px 15px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    #okrForm button:hover {
+      background-color: #0056b3;
+    }
+    .okr-card {
+      background: white;
+      padding: 15px;
+      margin-top: 15px;
+      border-left: 4px solid #007bff;
+      border-radius: 5px;
+      box-shadow: 0 1px 4px rgba(0,0,0,0.1);
+    }
+    .logout-btn {
+      background-color: red;
+      color: white;
+      padding: 6px 12px;
+      border: none;
+      border-radius: 5px;
+      float: right;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+
+  <button class="logout-btn" onclick="logout()">Logout</button>
+  <h1>🎯 Welcome to MyOKR Dashboard!</h1>
+  <p id="welcomeMsg"></p>
+
+  <h3>Add New Objective</h3>
+  <form id="okrForm">
+    <input type="text" id="title" placeholder="Objective Title" required />
+    <textarea id="description" placeholder="Objective Description" required></textarea>
+    <button type="submit">Add Objective</button>
+  </form>
+
+  <h3>Your Objectives</h3>
+  <div id="okrList"></div>
+
+  <script>
+    // Redirect if not logged in
+    if (localStorage.getItem("isLoggedIn") !== "true") {
+      window.location.href = "welcome.html";
+    }
+
+    // Show logged-in user
+    const username = localStorage.getItem("username");
+    document.getElementById("welcomeMsg").textContent = `Logged in as: ${username}`;
+
+    // Load existing OKRs
+    const okrListDiv = document.getElementById("okrList");
+    let okrs = JSON.parse(localStorage.getItem("okrs")) || [];
+
+    function renderOKRs() {
+      okrListDiv.innerHTML = "";
+      okrs.forEach((okr, index) => {
+        const div = document.createElement("div");
+        div.className = "okr-card";
+        div.innerHTML = `<strong>${okr.title}</strong><p>${okr.description}</p>`;
+        okrListDiv.appendChild(div);
+      });
+    }
+
+    renderOKRs();
+
+    // Handle Add Objective
+    document.getElementById("okrForm").addEventListener("submit", function (e) {
+      e.preventDefault();
+
+      const title = document.getElementById("title").value.trim();
+      const description = document.getElementById("description").value.trim();
+
+      if (title && description) {
+        okrs.push({ title, description });
+        localStorage.setItem("okrs", JSON.stringify(okrs));
+        document.getElementById("okrForm").reset();
+        renderOKRs();
+      }
+    });
+
+    // Logout function
+    function logout() {
+      localStorage.removeItem("isLoggedIn");
+      localStorage.removeItem("username");
+      window.location.href = "welcome.html";
+    }
+  </script>
+</body>
+</html>
+
