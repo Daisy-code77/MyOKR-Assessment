@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Welcome to MyOKR</title>
+</head>
+<body>
+  <h2>Login to MyOKR</h2>
+  <form id="loginForm">
+    <input type="text" id="username" placeholder="Username" required><br><br>
+    <input type="password" id="password" placeholder="Password" required><br><br>
+    <button type="submit">Login</button>
+    <p id="errorMsg" style="color:red;"></p>
+  </form>
+
+  <script>
+    // Redirect if already logged in
+    if (localStorage.getItem("isLoggedIn") === "true") {
+      window.location.href = "dashboard.html";
+    }
+
+    document.getElementById("loginForm").addEventListener("submit", function(e) {
+      e.preventDefault();
+
+      const username = document.getElementById("username").value;
+      const password = document.getElementById("password").value;
+      const error = document.getElementById("errorMsg");
+
+      if (username === "admin" && password === "admin123") {
+        // Save login to localStorage
+        localStorage.setItem("isLoggedIn", "true");
+        localStorage.setItem("username", username);
+
+        // Redirect to dashboard
+        window.location.href = "dashboard.html";
+      } else {
+        error.textContent = "Invalid username or password";
+      }
+    });
+  </script>
+</body>
+</html>
+
